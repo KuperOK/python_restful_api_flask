@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    Departments
+
+{% endblock %}
+
+{% block css%}
+        <link rel="stylesheet" href="../static/css/style.css" crossorigin="anonymous">
+{% endblock %}
+
+{% block content_title %}
+
+    Departments
+
+{% endblock %}
+
+{% block content %}
+
+<!--post form (CREATE)-->
+<div class="crud_forms">
+<form method="post" name="add_dep" >
+<!--<legend>crud</legend>-->
+        <input class = 'dep_name' type="text" name="dep_name" placeholder="Add Dept name"style='width: 220px'>
+        <input class="submit" type="submit" value="Create">
+
+</form>
+<P></P>
+<!--get form (READ)-->
+<form method="get" name="get_dep" >
+    <input class="get_dep_id_name" type="text" name="get_dep_id"
+           placeholder="Input Dept Id or Name" style='width: 220px'>
+    <input class="submit" type="submit" value="Read">
+    <p class="get_result">
+    </p>
+    </form>
+<P></P>
+<!--put form (UPDATE)-->
+<form method="post" name="put_dep" >
+    <input class="put_dep_id_name" type="text" name="dep_id"
+           placeholder="Input Dept Id or Name for update" style='width: 220px'>
+    <br>
+    <!--    <p></p>-->
+    <input class = 'put_new_name' type="text" name="dep_name"
+               placeholder="Input New Dept Name" style='width: 220px'>
+        <input class="submit" id="update" type="submit" value="Update">
+    </form>
+<P></P>
+<!--delete form (DELETE)-->
+<form method="post" name="del_dep" >
+        <input class = 'dep_name_or_id' type="text" name="dep_name"
+               placeholder="Input Dept id or Dept name" style='width: 220px'>
+        <input class="submit" type="submit" value="Delete">
+    </form>
+</div>
+
+<script src="../static/js/post_hendler_dept.js">
+
+// // post method (Rest CREATE-operation)
+//     let form = document.querySelector('form[name="add_dep"]');
+//     let input = document.querySelector('.dep_name');
+//
+//     form.addEventListener('submit', (evt) => {
+//         evt.preventDefault();
+//         // object.push({index: '', value: input.value})
+//     try {
+//     fetch('/api/departments/add', {
+//     method: 'POST', // *GET, POST, PUT, DELETE, etc.
+//     headers: {
+//         'Content-Type': 'application/json'
+//             },
+//     body: JSON.stringify({'dep_name':input.value}) // body data type must match "Content-Type" header
+// });
+//         alert(`Department ${input.value} has been added`);
+//         input.value = '';
+// } catch (e) {alert('query failed')}
+// });
+//
+// //  delete method (Rest DELETE-operation)
+//     let form_del = document.querySelector('form[name="del_dep"]');
+//     let input_del = document.querySelector('.dep_name_or_id');
+//
+//     form_del.addEventListener('submit', (evt) => {
+//         evt.preventDefault();
+//         // object.push({index: '', value: input.value})
+//     try {
+//     fetch(`/api/departments/${input_del.value}`, {
+//     method: 'DELETE', // *GET, POST, PUT, DELETE, etc
+// });
+//         alert(`Department ${input_del.value} has been deleted`);
+//         input_del.value = '';
+// } catch (e) {alert('query failed')}
+// });
+
+</script>
+<p>
+    <br>
+</p>
+<!-- table for implemet get method (Rest READ-operation )-->
+<table border="1">
+    <thead>
+        <tr>
+            <th>Department Id</th>
+            <th>Department Name</th>
+        </tr>
+    </thead>
+    <tbody>
+       {% for dept in objects %}
+        <tr>
+            <td>{{dept.dep_id}}</td>
+            <td>{{dept.dep_name}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
